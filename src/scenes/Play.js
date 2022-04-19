@@ -27,12 +27,12 @@ class Play extends Phaser.Scene {
       this.hoop03 = new Hoop(this, game.config.width, borderUISize*6 + borderPadding*4, 'hoop', 0, 10).setOrigin(0,0);
 
       // green UI background
-      this.add.rectangle(0, borderUISize + borderPadding - 11, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
+      this.add.rectangle(0, borderUISize + borderPadding - 11, game.config.width, borderUISize * 2, 0x000080).setOrigin(0, 0);
       // white borders
-      this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-      this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-      this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
-      this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+      this.add.rectangle(0, 0, game.config.width, borderUISize, 0x87CEFA).setOrigin(0, 0);
+      this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0x87CEFA).setOrigin(0, 0);
+      this.add.rectangle(0, 0, borderUISize, game.config.height, 0x87CEFA).setOrigin(0, 0);
+      this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0x87CEFA).setOrigin(0, 0);
 
       // define keys
       keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -51,11 +51,11 @@ class Play extends Phaser.Scene {
 
       // display score
       let scoreConfig = {
-      fontFamily: 'Courier',
+      fontFamily: 'Droid Sans Mono',
       fontSize: '28px',
-      backgroundColor: '#F3B141',
-      color: '#843605',
-      align: 'right',
+      backgroundColor: '#000000',
+      color: '#FFFFFF',
+      align: 'center',
       padding: {
         top: 5,
         bottom: 5,
