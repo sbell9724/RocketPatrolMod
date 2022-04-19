@@ -8,7 +8,7 @@ class Play extends Phaser.Scene {
       this.load.image('ball', './assets/basketball.png');
       this.load.image('hoop', './assets/hoop.png');
       this.load.image('spaceship', './assets/target.png');
-      this.load.image('starfield', './assets/court.png');
+      this.load.image('court', './assets/court.png');
 
       // load spritesheet
       this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -27,7 +27,7 @@ class Play extends Phaser.Scene {
       this.hoop03 = new Hoop(this, game.config.width, borderUISize*6 + borderPadding*4, 'hoop', 0, 10).setOrigin(0,0);
 
       // green UI background
-      this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
+      this.add.rectangle(0, borderUISize + borderPadding - 11, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
       // white borders
       this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
       this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
@@ -87,7 +87,7 @@ class Play extends Phaser.Scene {
       }
       
       // background moving
-      this.court.tilePositionX -= 4;
+      this.court.tilePositionX -= 2;
       if (!this.gameOver) {               
         this.p1Ball.update();       // update rocket sprite
         this.hoop01.update();         // update spaceships (x3)
