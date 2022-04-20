@@ -7,7 +7,7 @@ class Play extends Phaser.Scene {
       // load images/tile sprites
       this.load.image('ball', './assets/basketball.png');
       this.load.image('hoop', './assets/hoop.png');
-      this.load.image('spaceship', './assets/target.png');
+      this.load.image('target', './assets/target.png');
       this.load.image('court', './assets/court.png');
 
       // load spritesheet
@@ -22,9 +22,12 @@ class Play extends Phaser.Scene {
       this.p1Ball = new Ball(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'ball').setOrigin(0.5, 0);
 
       // add spaceships (x3)
-      this.hoop01 = new Hoop(this, game.config.width + borderUISize*6, borderUISize*4, 'hoop', 0, 30).setOrigin(0, 0);
-      this.hoop02 = new Hoop(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'hoop', 0, 20).setOrigin(0,0);
-      this.hoop03 = new Hoop(this, game.config.width, borderUISize*6 + borderPadding*4, 'hoop', 0, 10).setOrigin(0,0);
+      this.hoop01 = new Hoop(this, game.config.width + borderUISize*6, borderUISize*4.5, 'hoop', 0, 30).setOrigin(0, 0);
+      this.hoop02 = new Hoop(this, game.config.width + borderUISize*3, borderUISize*5.5 + borderPadding*2, 'hoop', 0, 20).setOrigin(0,0);
+      this.hoop03 = new Hoop(this, game.config.width, borderUISize*6 + borderPadding*4.5, 'hoop', 0, 10).setOrigin(0,0);
+
+      // add target (difficulty)
+      this.target01 = new Target(this, game.config.width, borderUISize*3.5, 'target', 0).setOrigin(0, 0);
 
       // green UI background
       this.add.rectangle(0, borderUISize + borderPadding - 11, game.config.width, borderUISize * 2, 0x000080).setOrigin(0, 0);
@@ -47,7 +50,7 @@ class Play extends Phaser.Scene {
       frameRate: 30
     });
 
-      //background music
+      // background music
       this.sound.play('ambience', {volume: 0.4})
 
       // initialize score
@@ -67,6 +70,12 @@ class Play extends Phaser.Scene {
       fixedWidth: 100
       }
       this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+
+      // display high score
+      this.scoreCenter = this.add.text(borderUISize + borderPadding + 220, borderUISize + borderPadding*2, hiScore, scoreConfig);
+
+      // fire text
+      this.scoreCenter = this.add.text(borderUISize + borderPadding + 440, borderUISize + borderPadding*2, 'FIRE', scoreConfig);
 
       // GAME OVER flag
       this.gameOver = false;
@@ -101,6 +110,7 @@ class Play extends Phaser.Scene {
         this.hoop01.update();         // update spaceships (x3)
         this.hoop02.update();
         this.hoop03.update();
+        this.target01.update();     // update target sprite
       } 
 
       // check collisions
@@ -115,6 +125,10 @@ class Play extends Phaser.Scene {
       if (this.checkCollision(this.p1Ball, this.hoop01)) {
         this.p1Ball.reset();
         this.shipExplode(this.hoop01);
+      }
+      if (this.checkCollision(this.p1Ball, this.target01)) {
+        this.p1Ball.reset();
+        this.shipExplode(this.target01);
       }
       
     }
