@@ -46,6 +46,10 @@ class Play extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
       frameRate: 30
     });
+
+      //background music
+      this.sound.play('ambience', {volume: 0.4})
+
       // initialize score
       this.p1Score = 0;
 
@@ -72,6 +76,10 @@ class Play extends Phaser.Scene {
       this.clock = this.time.delayedCall(60000, () => {
           this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
           this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+          if (this.p1Score > hiScore){
+            hiScore = this.p1Score
+          }
+          this.add.text(game.config.width/2, game.config.height/2 + 128, 'Your High Score: ' + hiScore, scoreConfig).setOrigin(0.5);
           this.gameOver = true;
       }, null, this);
     }
