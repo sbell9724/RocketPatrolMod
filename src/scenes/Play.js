@@ -58,8 +58,8 @@ class Play extends Phaser.Scene {
 
       // display score
       let scoreConfig = {
-      fontFamily: 'Droid Sans Mono',
-      fontSize: '28px',
+      fontFamily: 'Comic Sans MS',
+      fontSize: '24px',
       backgroundColor: '#000000',
       color: '#FFFFFF',
       align: 'center',
